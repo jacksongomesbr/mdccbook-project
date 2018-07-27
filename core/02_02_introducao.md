@@ -196,7 +196,9 @@ Uma **Tupla** (ou ênupla) é uma sequência ordenada de $n$ elementos (ou compo
 A notação utilizada é $X = (c_1, c_2, ..., c_n)$ onde:
 
 * $X$ é uma ênupla com $n$ componentes
-* $c_i$ é o enésimo componente da ênupla
+* $c_1$ é o primeiro componente da ênupla
+* $c_n$ é o último componente da ênupla
+* $c_i$ é o i-ésimo componente da ênupla
 
 **Exemplos:** 
 
