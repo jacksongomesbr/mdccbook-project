@@ -464,7 +464,7 @@ O projeto deste capítulo deve alcançar os objetivos:
     * verificar pertinência
     * verificar continência
     * realizar união (com outro conjunto)
-    * realizar disjunção (com outro conjunto)
+    * realizar intersecção (com outro conjunto)
     * realizar diferença (com outro conjunto)
     * realizar complemento (em relação a outro conjunto)
     * gerar o conjunto das partes
