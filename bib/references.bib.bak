@@ -42,27 +42,6 @@
   url     = {https://www.w3schools.com/tags/default.asp},
 }
 
-@Misc{angularhome,
-  author  = {Google},
-  title   = {Angular},
-  urldate = {2018-07-22},
-  url     = {https://angular.io/},
-}
-
-@Misc{w3sjquerytutorial,
-  author  = {{W3Schools}},
-  title   = {jQuery Tutorial},
-  urldate = {2018-07-22},
-  url     = {https://www.w3schools.com/jquery/default.asp},
-}
-
-@Misc{w3sjqueryref,
-  author  = {{W3Schools}},
-  title   = {jQuery Reference},
-  urldate = {2018-07-22},
-  url     = {https://www.w3schools.com/jquery/jquery_ref_overview.asp},
-}
-
 @Misc{jqueryhome,
   author  = {{The jQuery Foundation}},
   title   = {jQuery},
@@ -84,13 +63,6 @@
   url     = {https://git-scm.com/},
 }
 
-@Misc{angularclihome,
-  author  = {Google},
-  title   = {Angular CLI},
-  urldate = {2018-07-22},
-  url     = {https://cli.angular.io/},
-}
-
 @Misc{nodejshome,
   author  = {{Node.js Foundation}},
   title   = {Node.js},
@@ -105,37 +77,22 @@
   url     = {https://www.npmjs.com/},
 }
 
-@Misc{wiki:mvc,
-  author  = {{Wikipedia contributors}},
-  title   = {Model–view–controller --- {Wikipedia}{,} The Free Encyclopedia},
-  year    = {2018},
-  note    = {[Online; accessed 23-July-2018]},
-  urldate = {2018-07-23},
-  url     = {https://en.wikipedia.org/w/index.php?title=Model%E2%80%93view%E2%80%93controller&oldid=849850595},
-}
-
-@Misc{wiki:mvvm,
-  author  = {{Wikipedia contributors}},
-  title   = {Model–view–viewmodel --- {Wikipedia}{,} The Free Encyclopedia},
-  year    = {2018},
-  note    = {[Online; accessed 23-July-2018]},
-  urldate = {2018-07-23},
-  url     = {https://en.wikipedia.org/w/index.php?title=Model%E2%80%93view%E2%80%93viewmodel&oldid=851186618},
-}
-
-@Misc{wiki:di,
-  author = {{Wikipedia contributors}},
-  title  = {Dependency injection --- {Wikipedia}{,} The Free Encyclopedia},
-  year   = {2018},
-  note   = {[Online; accessed 23-July-2018]},
-  url    = {https://en.wikipedia.org/w/index.php?title=Dependency_injection&oldid=845653474},
-}
-
 @Misc{typescripthome,
   author  = {Microsoft},
   title   = {TypeScript - JavaScript that scales},
   urldate = {2018-07-24},
   url     = {https://www.typescriptlang.org/index.html},
+}
+
+@Book{menezes2010matematica,
+  title     = {Matemática discreta para computação e informática},
+  publisher = {Bookman},
+  year      = {2010},
+  author    = {Paulo Blauth Menezes},
+  series    = {Série livros didáticos informática UFRGS},
+  address   = {Porto Alegre},
+  edition   = {3},
+  isbn      = {978-85-7780-681-2},
 }
 
 @Comment{jabref-meta: databaseType:bibtex;}

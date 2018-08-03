@@ -1,4 +1,4 @@
-# Introdução
+# Introdução {#sec:introducao}
 
 ## Matemática Discreta
 
@@ -28,7 +28,7 @@ No exemplo do computador, embora a quantidade de unidades de armazenamento não 
 
 Assim, a matemática discreta possui como ênfase os estudos matemáticos baseados em conjuntos contáveis, sejam eles finitos ou infinitos. De forma oposta, a *matemática do continuum* possui ênfase nos conjuntos não contáveis. Um exemplo disso são o cálculo diferencial e integral.
 
-## Teoria dos Conjuntos
+## Teoria dos Conjuntos {#sec:teoria-dos-conjuntos}
 
 Os **conjuntos** são a base da forma de representação de enumerações de elementos em matemática discreta. Por definição um conjunto é:
 

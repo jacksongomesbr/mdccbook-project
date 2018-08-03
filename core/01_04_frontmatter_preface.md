@@ -1,8 +1,8 @@
-# Prefácio
+# Prefácio {-}
 
 Este é um texto de apoio à disciplina Matemática Discreta para os cursos de computação do Centro Universitário Luterano de Palmas. Sempre que possível serão apresentadas referências a conceitos da computação e como eles se relacionam com os conceitos matemáticos apresentados. A principal referência do conteúdo utilizado aqui é [@menezes2010matematica].
 
-## Convenções
+## Convenções {-}
 
 Os trechos de código apresentados no livro seguem o seguinte padrão:
 
@@ -38,7 +38,7 @@ class Pessoa:
         return ModelManager.save(self)
 ```
 
-## Conhecimentos necessários e desejáveis 
+## Conhecimentos necessários e desejáveis  {-}
 
 Este texto aborda conceitos matemáticos com aplicações em computação. Portanto, conhecimentos básicos dos cursos de computação são necessários, como noções de lógica, algoritmos e programação e estruturas de dados. Além disso, são desejáveis conhecimentos de bancos de dados e orientação a objetos e também podem ser recursos úteis: 
 
