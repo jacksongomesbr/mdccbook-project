@@ -295,9 +295,10 @@ ou
 2. $\mbox{Silva} + \mbox{Souza} = \{ \mbox{João}_{\mbox{Silva}}, \mbox{Maria}_{\mbox{Silva}}, \mbox{José}_{\mbox{Silva}}, \mbox{Pedro}_{\mbox{Souza}}, \mbox{Ana}_{\mbox{Souza}}, \mbox{José}_{\mbox{Souza}} \}$
 ----------------------------------------------------------------------------------
 
+
 ## Provando propriedades
 
-#### Prova da propriedade *elemento neutro da união*
+### Prova da propriedade *elemento neutro da união*
 
 Elemento neutro é definido como: 
 
@@ -309,18 +310,18 @@ Assim, há duas igualdades, que podem ser analisadas considerando a validade da 
 
 *O primeiro caso (1)*: Seja $x \in A \cup \emptyset$. Então devemos provar que $A \cup \emptyset \subseteq \emptyset \cup A$:
 
-- $x \in A \cup \emptyset \implies$ (definição de união)
-- $x \in A \lor x \in \emptyset \implies$ (comutatividade da disjunção)
-- $x \in \emptyset \lor x \in A \implies$ (definição de união)
+- $x \in A \cup \emptyset \Rightarrow$ (definição de união)
+- $x \in A \lor x \in \emptyset \Rightarrow$ (comutatividade da disjunção)
+- $x \in \emptyset \lor x \in A \Rightarrow$ (definição de união)
 - $x \in \emptyset \cup A$
 
 Portanto, $A \cup \emptyset \subseteq \emptyset \cup A$.
 
 *O segundo caso (2)*: Seja $x \in \emptyset \cup A$. Então devemos provar que $\emptyset \cup A \subseteq A \cup \emptyset$:
 
-- $x \in \emptyset \cup A \implies$ (definição de união)
-- $x \in \emptyset \lor x \in A \implies$ (comutatividade da disjunção)
-- $x \in A \lor x \in \emptyset \implies$ (definição de união)
+- $x \in \emptyset \cup A \Rightarrow$ (definição de união)
+- $x \in \emptyset \lor x \in A \Rightarrow$ (comutatividade da disjunção)
+- $x \in A \lor x \in \emptyset \Rightarrow$ (definição de união)
 - $x \in A \cup \emptyset$
 
 Portanto, $\emptyset \cup A = A \cup \emptyset$.
@@ -331,15 +332,15 @@ Portanto, $\emptyset \cup A = A \cup \emptyset$.
 
 *Quarto caso (4)*: Seja $x \in A \cup \emptyset$. Então devemos provar que $A \cup \emptyset \subseteq A$:
 
-- $x \in A \cup \emptyset \implies$ (definição de união)
-- $x \in A \lor x \in \emptyset \implies$ ($x \in \emptyset$ é sempre *false*)
+- $x \in A \cup \emptyset \Rightarrow$ (definição de união)
+- $x \in A \lor x \in \emptyset \Rightarrow$ ($x \in \emptyset$ é sempre *false*)
 - $x \in A$
 
 Portanto, $A \cup \emptyset \subseteq A$.
 
 *Quinto caso (5)*: Seja $x \in A$. Então devemos provar que $A \subseteq A \cup \emptyset$:
 
-- $x \in A \implies$ ($x \in A$ é sempre *true*, portanto podemos considerar $p \implies p \lor q)$
+- $x \in A \Rightarrow$ ($x \in A$ é sempre *true*, portanto podemos considerar $p \Rightarrow p \lor q)$
 - $x \in A \lor x \in \emptyset$ (definição de união)
 - $x \in A \cup \emptyset$
 
