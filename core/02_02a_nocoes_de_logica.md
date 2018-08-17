@@ -1,6 +1,6 @@
 # Noções de lógica e técnicas de demonstração
 
-Depois de ver sobre teoria dos conjuntos fica mais evidente a necessidade de estabelecer uma linguagem lógico-matemática para demonstrações e provas. Este capítulo apresenta uma revisão dos conceitos de lógica e traz técnicas de demonstração úteis nos capítulos seguintes sobre provas.
+Depois de ver sobre a **Teoria dos conjuntos** fica mais evidente a necessidade de estabelecer uma linguagem lógico-matemática para demonstrações e provas. Este capítulo apresenta uma revisão dos conceitos de lógica e traz técnicas de demonstração úteis nos capítulos seguintes sobre provas.
 
 ## Tautologia e contradição
 
@@ -120,8 +120,8 @@ b) tem valor lógico dependendo do elemento $x \in A$.
 
 Então:
 
-a) o **conjunto verdade** $p(x) = \{x \in A \mid p(x) \mbox{é verdadeira}\}$
-b) o **conjunto falsidade** $p(x) = \{x \in A \mid p(x) \mbox{é falsa}\}$
+a) o **conjunto verdade** $p(x) = \{x \in A \mid p(x) \mbox{ é verdadeira}\}$
+b) o **conjunto falsidade** $p(x) = \{x \in A \mid p(x) \mbox{ é falsa}\}$
 
 Ainda:
 
@@ -227,4 +227,120 @@ Por exemplo, para o conjunto universo $N$ valem:
 
 * $(\forall n)(\exists m)(n < m)$ é **verdadeira**: dado **qualquer** valor $n$, **existe pelo menos um** $m$ que satisfaz a desigualdade. Por exemplo: tomando $m = n + 1$ é verdadeiro que $n < n + 1$
 * $(\exists m)(\forall n)(n < m)$ é **falsa**: **existe** um número natural maior que **qualquer** outro, o que não é verdade.
+
+A **negação da proposição quantificada**:
+
+$$
+(\forall x \in A) p(x)
+$$
+
+é definida como:
+
+$$
+(\exists x \in A) \neg p(x)
+$${#eq:negacao-quantificador}
+
+o que significa que existe pelo menos um $x$ tal que não é fato que ou não é verdade que $p(x)$.
+
+Logo:
+
+$$
+\neg ( (\forall x \in A) p(x)) \Leftrightarrow (\exists x \in A) \neg p(x)
+$$
+
+e, também:
+
+$$
+\neg ( (\exists x \in A) p(x)) \Leftrightarrow (\forall x \in A) \neg p(x)
+$$
+
+
+## Técnicas de demonstração
+
+Um **teorema** é uma proposição que prova-se uma tautologia, do tipo:
+
+$$
+p \rightarrow q
+$${#eq:teorema}
+
+ou seja, uma implicação:
+
+$$
+p \Rightarrow q
+$$
+
+onde:
+
+* $p$ é chamada de **hipótese** (ou **premissa**) e é, por suposição, **verdadeira**
+* $q$ é chamada de **tese** (ou **conclusão**)
+
+Para exemplificar considere o teorema:
+
+> $0$ é o único elemento neutro da adição em $N$
+
+Ele poderia ser reescrito como a seguir, para evidenciar hipótese e tese:
+
+> se $0$ é elemento neutro da adição em $N$,
+> então $0$ é o único elemento neutro da adição em $N$
+
+Desta forma, por causa de $p \Rightarrow q$, a hipótese $p$ é suposta verdadeira e, consequentemente, ela não deve ser demonstrada.
+
+Para um determinado teorema $p \rightarrow q$ destacam-se as seguintes técnicas de prova (demonstração) de que, de fato, $p \Rightarrow q$:
+
+* prova direta
+* prova por contraposição
+* prova por redução ao absurdo
+* prova por indução
+
+Para qualquer técnica de demonstração deve-se dar atenção especial aos quantificadores. Para provar a proposição:
+
+$$
+(\forall x \in A) p(x)
+$$
+
+é necessário provar $p(x)$ para todo $x \in A$. Assim, mostrar um determinado elemento $a \in A$ não é uma prova, mas um exemplo, o que não constitui uma prova válida para todos os elementos de $A$. Já no caso de:
+
+$$
+(\exists x \in A) p(x)
+$$
+
+para provar que existe pelo menos um $a \in A$ tal que $p(x)$ é **verdadeira** basta mostrar um exemplo.
+
+### Prova direta
+
+Uma prova é direta quando pressupõe verdadeira a hipótese e, a partir dela, prova ser verdadeira a conclusão.
+
+Considere o teorema:
+
+> a soma de dois números pares é um número par
+
+que, reescrito na forma de $p \rightarrow q$, torna-se:
+
+> se $n$ e $m$ são dois números pares quaisquer, então $n + m$ é um número par
+
+Suponha que $n$ e $m$ são números pares. Deve-se mostrar que $n + m$ é par.
+
+Pela definição de **par**: 
+
+> qualquer número par $n$ pode ser definido como $n = 2r$, para algum natural $r$.
+
+podemos afirmar que existem $r, s \in N$ tais que:
+
+$$
+n = 2r  \qquad  \mbox{e}    \qquad   m = 2s
+$$
+
+Então, aplicando essas definições em $n + m$:
+
+$$
+n + m = 2r + 2s = 2(r + s)
+$$
+
+A expressão $r + s$ é um número que, multiplicado por $2$ é um número par. Logo, $n + m$ é um número par e prova-se verdadeira a conclusão.
+
+A estrutura da prova direta é^[Notas de aula da disciplina Matemática Discreta, do Departamento de Ciência da Computação da UFMG, ministrada pelo prof. Antonio Alfredo Ferreira Loureiro. On-line: <http://homepages.dcc.ufmg.br/~loureiro/md/md_3MetodosDeProva.pdf>]:
+
+1. expresse a afirmação a ser provada na forma $(\forall x \in A) p(x) \rightarrow q(x)$ (pode ser feito mentalmente)
+2. comece a prova supondo que $x$ é um elemento específico de $A$, mas escolhido arbitrariamente para o qual a hipótese $p(x)$ é verdadeira (normalmente abreviado para o formato: suponha $x \in A e p(x)$)
+3. mostre que a consluão é verdadeira usando definições, resultados anteriores e as regras de inferência lógica
 

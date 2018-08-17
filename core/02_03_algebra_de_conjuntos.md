@@ -296,6 +296,62 @@ ou
 ----------------------------------------------------------------------------------
 
 
+## Relações entre a Lógica e as operações sobre conjuntos
+
+É possível estabelecer uma relação entre a lógica e as operações da álgebra de conjuntos, como mostra a [@tbl:conectivos-logicos-operacoes-sobre-conjuntos].
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Propriedade                 Lógica                                                              Teoria dos conjuntos 
+--------------------------- ------------------------------------------------------------------- ---------------------------------------------------
+**idempotência**            $p \land p \Leftrightarrow p$ \                                     $A \cap A = A$ \
+                            $p \lor p \Leftrightarrow p$                                        $A \cup A = A$ \
+
+**comutativa**              $p \land q \Leftrightarrow q \land p$ \                             $A \cap B = B \cap A$ \ 
+                            $p \lor q \Leftrightarrow q \lor p$                                 $A \cup B = B \cup A$ \
+
+**associativa**             $p \land (q \land r) \Leftrightarrow (p \land q) \land r$ \         $A \cap (B \cap C) = (A \cap B) \cap C$ \
+                            $p \lor (q \lor r) \Leftrightarrow (p \lor q) \lor r$               $A \cup (B \cup C) = (A \cup B) \cup C$ \
+
+**distributiva**            $p \land (q \lor r) \Leftrightarrow (p \land q) \lor (p \land r)$ \ $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ \
+                            $p \lor (q \land r) \Leftrightarrow (p \lor q) \land (p \lor r)$    $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$ \
+
+**negação** ou \            $\neg \neg p \Leftrightarrow p$ \                                   $\sim{\sim{A}} = A$ \
+**complemento**             $p \land \neg p \Leftrightarrow F$ \                                $A \cap \sim{A} = \emptyset$ \
+                            $p \lor \neg p \Leftrightarrow V$                                   $A \cup \sim{A} = U$ \
+
+**DeMorgan**                $\neg(p \lor q) \Leftrightarrow \neg p \land \neg q$ \              $\sim{(A \cup B)} = \sim{A} \cap \sim{B}$ \
+                            $\neg(p \land q) \Leftrightarrow \neg p \lor \neg q$                $\sim{(A \cap B)} = \sim{A} \cup \sim{B}$ \
+
+**elemento neutro**         $p \land V \Leftrightarrow p$ \                                     $A \cap U = A$ \
+                            $p \lor F \Leftrightarrow p$                                        $A \cup \emptyset = A$ \
+
+**elemento absorvente**     $p \land F \Leftrightarrow F$ \                                     $A \cap \emptyset = \emptyset$ \
+                            $p \lor V \Leftrightarrow V$                                        $A \cup U = U$ \
+
+**absorção**                $p \land (p \lor q) \Leftrightarrow p$ \                            $A \cap (A \cup B) = A$ \
+                            $p \lor (p \land q) \Leftrightarrow p$                              $A \cup (A \cap B) = A$
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+: Conectivos lógicos x operações sobre conjuntos {#tbl:conectivos-logicos-operacoes-sobre-conjuntos}
+
+Ainda, as relações lógicas e as relações sobre conjuntos são análogas:
+
+* **implicação/contigência**: na lógica: $p \Rightarrow q$, na teoria dos conjuntos: $A \subseteq B$
+* **equivalência/igualdade**: na lógica: $p \Leftrightarrow q$, na teoria dos conjuntos: $A = B$
+
+Como já visto, $p(x)$ é uma proposição que descreve uma propriedade de um elemento $x \in A$. Assim, 
+a continência e a igualdade de dois conjuntos $A = \{ x \mid p(x) \}$ e $B = \{ x \mid q(x) \}$
+pode ser vista assim:
+
+* **contingência**: $A \subseteq B$ se e somente se $(\forall x \in U)(p(x) \Rightarrow q(x))$
+* **igualdade**: $A = B$ se e somente se $(\forall x \in U)(p(x) \Leftrightarrow q(x))$
+
+Exemplos:
+
+* $A = U$ se e somente se $(\forall x \in U)(p(x) \Leftrightarrow V)$
+* $A = \emptyset$ se e somente se $(\forall x \in U)(p(x) \Leftarrow F)$
+
+
 ## Provando propriedades
 
 ### Prova da propriedade *elemento neutro da união*
@@ -350,40 +406,10 @@ Portanto, $A \subseteq A \cup \emptyset$.
 
 *Sétimo caso (7)*: Por fim, de (3) e (6) e pela transitividade da igualdade, concluímos que $A \cup \emptyset = \emptyset \cup A = A$ e provamos a propriedade do *elemento neutro* da união.
 
-**Exercício**: Prove as propriedades idempotência, comutativa e associativa da união.
-
-
-## Relações entre a Lógica e as operações sobre conjuntos
-
-É possível estabelecer uma relação entre a lógica e as operações da álgebra de conjuntos, como mostra a [@tbl:logica-conjuntos].
-
-|Conectivo ou relação lógicos|Operação ou relação sobre conjuntos|
-|------------|-----------|
-|Negação     |Complemento|
-|Disjunção   |União      |
-|Conjunção   |Intersecção|
-|Implicação  |Continência|
-|Equivalência|Igualdade  |
-
-: Relação entre conectivos da lógica e operações sobre conjuntos {#tbl:logica-conjuntos}
-
-As propriedades dos conectivos e operadores lógicos são válidas na teoria dos conjuntos ([@tbl:propriedades-logica-conjuntos]):
-
-|Conectivo lógico|Operação sobre conjuntos|
-|---|---|
-|**Idempotência:** $\wedge$ e $\lor$|*Idempotência*: intersecção e união|
-|**Comutativa:** $\wedge$ e $\lor$  |*Comutativa*: intersecção e união |
-|**Associativa:** $\wedge$ e $\lor$ |*Associativa*: intersecção e união|
-|**Distributiva:** $\wedge$ sobre $\lor$ e $\lor$ sobre $\wedge$ | *Distributiva*: intersecção sobre união e união sobre intersecção|
-|**Dupla negação**|*Duplo complemento*|
-|**DeMorgan**|*DeMorgan*|
-|**absorção**|*absorção*|
-
-: Relação entre propriedades dos conectivos lógicos e operações sobre conjuntos {#tbl:propriedades-logica-conjuntos}
 
 ## Exercícios
 
-**Exercício 2.1**: Suponha o conjunto universo $S = \{p, q, r, s, t, u, v, w\}$ bem como os seguintes conjuntos: 
+**Exercício 1**: Suponha o conjunto universo $S = \{p, q, r, s, t, u, v, w\}$ bem como os seguintes conjuntos: 
 
 - $A = \{p, q, r, s\}$
 - $B = \{r, t, v\}$
@@ -403,24 +429,23 @@ e) $\sim(A \cup B)$
 
 f) $(A \cup B) \cap \sim{C}$
 
-**Exercício 2.2**: Considere os conjuntos $A = \{a\}$, $B = \{a, b\}$ e $C = \{0, 1, 2\}$. Calcule os seguintes produtos cartesianos:
+**Exercício 2**: Considere os conjuntos $A = \{a\}$, $B = \{a, b\}$ e $C = \{0, 1, 2\}$. Calcule os seguintes produtos cartesianos:
 
 1. $(A \times B) \times C$
 2. $A \times (B \times C)$
 3. $B^2$
 4. $C^2$
 
-**Exercício 2.3**: Considere os conjuntos $D = \{0, 1, 2, ..., 9\}$, $V = \{a, e, i, o, u\}$, e $P = \{0, 2, 4, 6, ...\}$. Então, encontre:
+**Exercício 3**: Considere os conjuntos $D = \{0, 1, 2, ..., 9\}$, $V = \{a, e, i, o, u\}$, e $P = \{0, 2, 4, 6, ...\}$. Então, encontre:
 
 1. $D + V$
 2. $D + P$
 3. $V + V$
 4. $V + \emptyset$
 
-**Exercício 2.4**: Utilizando um banco de dados relacional, crie duas tabelas: *Palavras1* e *Palavras2*, respectivamente. Utilizando linguagem SQL, crie e apresente o resultado de uma consulta que realiza o produto cartesiano entre as duas tabelas.
+**Exercício 4**: Utilizando um banco de dados relacional, crie duas tabelas: *Palavras1* e *Palavras2*, respectivamente. Utilizando linguagem SQL, crie e apresente o resultado de uma consulta que realiza o produto cartesiano entre as duas tabelas.
 
-**Exercício 2.5**: Crie um programa que lê $n$ arquivos de entrada. Cada arquivo contém uma palavra em cada linha. O programa deve ler os  arquivos e gerar um arquivo de saída chamado *pc.txt* contendo o produto cartesiano entre as palavras dos arquivos de entrada. Cada linha do arquivo de saída deve representar um elemento do produto cartesiano (uma $n$-upla) cujos componentes devem estar separados por um espaço [em branco].
-
+**Exercício 5**: Crie um programa que lê $n$ arquivos de entrada. Cada arquivo contém uma palavra em cada linha. O programa deve ler os  arquivos e gerar um arquivo de saída chamado *pc.txt* contendo o produto cartesiano entre as palavras dos arquivos de entrada. Cada linha do arquivo de saída deve representar um elemento do produto cartesiano (uma $n$-upla) cujos componentes devem estar separados por um espaço [em branco].
 **Exemplo**: Para os arquivos de entrada:
 
 |palavras1.txt|
@@ -450,6 +475,9 @@ o arquivo resultante seria:
 |maria silva aires|
 |maria santos moreira|
 |maria santos aires|
+
+**Exercício 6**: Faça uma pesquisa sobre as provas das propriedades das operações da álgebra de conjuntos e, em formato técnico-científico, apresente cada uma. 
+Não se esqueça de apresentar as referências.
 
 ## Projeto do capítulo
 
