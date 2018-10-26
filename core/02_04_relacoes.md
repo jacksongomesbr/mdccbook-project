@@ -107,3 +107,152 @@ c) $(A, <=)$
 d) $(A, >=)$
 e) $R = \{(x, y) \mid y = x + y \}$
 
+## Propriedades de endorrelações
+
+### Reflexiva, irreflexiva
+
+Seja $R : A \rightarrow A$, então $R$ é uma:
+
+a) **relação reflexiva**, se $(\forall a \in A)(a \, R \, a)$: para todo elemento $a$ de $A$ existe uma tupla $(a,a)$
+b) **relação irreflexiva** (ou **antirreflexiva**), se $(\forall a \in A)(\neg(a \, R \, a))$: para todo elemento $a$ de $A$ não existe uma tupla $(a,a)$.
+
+Uma forma rápida de identificar a relação $R$ no conjunto $A$ como reflexiva ou irreflexiva é realizar os seguintes passos:
+
+1. Definir o produto cartesiano de $A$
+2. Definir $C_i \subseteq R$ no qual todas as tuplas tenham componentes iguais (primeiro igual ao segundo)
+3. Definir $R \subseteq C_d$ no qual todas as tuplas tenham componentes diferentes (primeiro é diferente do segundo)
+
+Assim, podemos definir que:
+
+* a relação $R$ é reflexiva se $C_i \subseteq R$
+* a relação $R$ é irreflexiva se $R \subseteq C_d$
+
+**Exemplo: Seja $A=\{a, b\}$. Conjuntos importantes:**
+
+* $A^2 = \{(a,a),(a,b),(b,a),(b,b)\}$. 
+* $C_i = \{(a,a),(b,b)\}$
+* $C_d = \{(a,b),(b,a)\}$
+
+As seguintes relações são:
+
+a) Reflexivas:
+
+* $R_1 = \{(a,a),(b,b)\}$
+* $R_2 = \{(a,a),(a,b),(b,b)\}$, pois $C_i \subseteq R_2$
+* $R_3 = \{(a,a),(b,b),(b,a)\}$, pelo mesmo motivo de $R_2$
+* $R_4 = \{(a,a),(a,b),(b,a),(b,b)\}$, idem
+
+b) Irreflexivas:
+
+* $R_5 = \{(a,b),(b,a)\}$
+* $R_6 = \{(a,b)\}$, pois $R_6 \subseteq C_d$
+* $R_7 = \{(b,a)\}$, pelo mesmo motivo de $R_6$
+* $R_8 = \{\}$, idem
+
+
+**Exemplo: Seja $S = \{0,1,2\}$. Conjuntos importantes:**
+
+* $S^2 = \{(0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2)\}$
+* $C_i = \{(0,0),(1,1),(2,2)\}$
+* $C_d = \{(0,1),(0,2),(1,0),(1,2),(2,0),(2,1)\}$
+
+A seguinte relação não é reflexiva e nem irreflexiva:
+
+\begin{align*}
+(S,R) = \{(0,2),(2,0),(2,2)\}
+\end{align*}
+
+Não é reflexiva porque $C_i \nsubseteq (S,R)$ e não é irreflexiva porque $(S,R) \nsubseteq C_d$.
+
+### Reflexividade de relações em matrizes e grafos
+
+Para um conjunto $A$ é possível verificar se uma endorrelação $R : A \to A$ é reflexiva ou irreflexiva analisando a sua representação como matriz ou grafo:
+
+a) **Matriz**
+
+* **Reflexiva**: a diagonal da matriz contém somente o valor verdadeiro
+* **Irreflexiva**: a diagonal da matriz contém somente o valor falso
+
+b) **Grafo**
+
+* **Reflexiva**: qualquer nó tem um arco com origem e destino nele mesmo
+* **Irreflexiva**: qualquer nó não tem um arco com origem e destino nele mesmo
+
+### Simétrica, antissimétrica
+
+Seja $R : A \to A$ uma endorrelação em $A$, então $R$ é uma:
+
+a) **relação simétrica**, se $(\forall a,b \in A)(a \, R \, b \to b \, R \, a)$: para todo par de elementos $a$ e $b$ de $A$, sendo $a = b$ ou não, se há uma tupla $(a,b)$ então há uma tupla $(b,a)$
+b) **relação antissimétrica**, $(\forall a, b \in A), (a \, R \, b \land a \neq b) \implies (\neg b \, R \, a)$: para todo par de elementos $a$ e $b$ de $A$, se há uma tupla $(a,b)$ e $a \neq b$, então não há a tupla $(b,a)$.
+
+**Exemplos: Seja $A=\{a, b\}$. Conjuntos importantes:** 
+
+* $A^2 = \{(a,a),(a,b),(b,a),(b,b)\}$
+* $C_s = A^2$
+* $C_a = \{(a,a),(b,b)\}$
+
+As seguintes relações são:
+
+a) Simétricas:
+
+* $R_1 = \{(a,a),(b,b)\}$
+* $R_4 = \{(a,a),(a,b),(b,a),(b,b)\}$
+* $R_5 = \{(a,b),(b,a)\}$
+* $R_8 = \{\}$
+* $R_9 = \{(a,a)\}$
+* $R_{10} = \{(b,b)\}$
+* $R_{11} = \{(a,a),(a,b),(b,a)\}$
+* $R_{12} = \{(a,b),(b,a),(b,b)\}$
+
+b) Antissimétricas:
+
+* $R_1 = \{(a,a),(b,b)\}$
+* $R_2 = \{(a,a),(a,b),(b,b)\}$
+* $R_3 = \{(a,a),(b,b),(b,a)\}$
+* $R_6 = \{(a,b)\}$
+* $R_8 = \{\}$
+
+### Simétrica e antissimétrica em matrizes e grafos
+
+Para um conjunto $A$ uma forma de entender e verificar se uma endorrelação $R : A \to A$ é simétrica ou antissimétrica é analisar a sua representação como matriz ou grafo:
+
+a) **Matriz**
+
+* Simétrica: a metade acima ou abaixo da diagonal é espelhada na outra
+* Antissimétrica: se uma célula em uma metade da diagonal for verdadeira, a correspondente na outra metade é falsa
+
+b) **Grafo**
+
+* Simétrica: entre dois nós: a) não existe seta; ou b) existem duas setas, uma em cada sentido
+* Antissimétrica: há no máximo uma seta entre dois nós quaisquer
+
+### Transitiva, não transitiva
+
+Seja $A$ um conjunto e $R$ uma endorrelação em $A$, então $R$ é uma:
+
+a) **transitiva** se $(\forall a, b, c \in A), (a \, R \, b \land b \, R \, c \to a \, R \, c)$; e
+b) **não-transitiva** é o contrário da relação transitiva
+
+## Atividade de pesquisa
+
+1. Uma relação pode ser classificada nos seguintes tipos (que não são mutuamente exclusivos):
+
+a) funcional
+b) injetora
+c) total
+d) sobrejetora
+e) monomorfismo
+f) epimorfismo
+g) isomorfismo
+
+Escolha três dos tipos e, para cada um, apresente:
+
+a) definição (incluindo representação formal)
+b) dois exemplos
+
+2. As *Redes de Petri* são o modelo computacional do tipo concorrente mais utilizado em computação, informática e engenharia. Faça uma pesquisa sobre Redes de Petri e apresente:
+
+a) definição (conceito)
+b) significado dos símbolos da representação gráfica da rede
+c) dois exemplos
+d) como definir uma Rede de Petri utilizando Relação (utilizando exemplos)
