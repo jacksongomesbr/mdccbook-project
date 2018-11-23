@@ -1,4 +1,4 @@
-# Contagem 
+# Contagem  {#sec:contagem}
 
 Considere o seguinte algoritmo, em pseudocódigo:
 
@@ -463,4 +463,4 @@ A notação $C_{n, k}$ gera os chamados **coeficientes binomiais**.
 
 Estude a relação entre o coeficiente binomial e o Triângulo de Pascal e use esse conhecimento para criar um programa que crie o Triângulo de Sierpinski (use, por exemplo, a cor preta para número ímpar e a cor branca para número par). Exemplo:
 
-![Triângulo de Sierpinski](https://www.mathsisfun.com/images/pascals-triangle-3.gif)
+![Triângulo de Sierpinski](./graphics/pascals-triangle-3.gif)
