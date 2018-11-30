@@ -606,12 +606,23 @@ BG: 127123     BB: 135138
 
 Vamos introduzir mais três definições:
 
-* **Frequência**: um número que descreve o quão frequente um resultado ocorre. Pode ser uma contagem, como 121801, ou uma razão, como 0,515
-* **Distribuição**: um mapeamento de resultado para frequência, para cada resultado no espaço amostral.
-* **Distribuição de Probabilidade**: uma distribuição que foi *normalizada* de tal forma que a soma das frequências é 1
+Frequência
 
-Definimos a classe `ProbDist` (um subtipo do `dict` do Python):
+:   Um número que descreve o quão frequente um resultado ocorre. Pode ser uma contagem, como 121801, ou uma razão, como 0,515
 
+
+Distribuição
+
+:   Um mapeamento de resultado para frequência, para cada resultado no espaço amostral.
+
+
+Distribuição de Probabilidade
+
+:   Uma distribuição que foi *normalizada* de tal forma que a soma das frequências é 1
+
+
+
+Seguindo essas definições, declaramos a classe `ProbDist` (um subtipo do `dict` do Python):
 
 ```python
 class ProbDist(dict):
@@ -624,22 +635,20 @@ class ProbDist(dict):
             assert self[outcome] >= 0
 ```
 
-Também redefinimos as funções `P()` e `tal_que()`:
-
+A classe `ProbDist` cria um dicionário cujas chaves são resultados possíveis e os valores são probabilidades. Os nomes das chaves são definidos manualmente, mas as propriedades são criadas a partir de frequências:
 
 ```python
-def P(evento, espaco):
-    """A probabilidade de um evento, dado um espaço amostral de resultados equiprováveis.
-    evento: uma coleção de resultados, ou um predicado.
-    espaco: um conjunto de resultados ou a distribuicao de probabilidade na forma de pares {resultado: frequencia}.
-    """
-    if callable(evento):
-        evento = tal_que(evento, espaco)
-    if isinstance(espaco, ProbDist):
-        return sum(espaco[o] for o in espaco if o in evento)
-    else:
-        return Fraction(len(evento & espaco), len(espaco))
-    
+ProbDist(sexo_f=1, sexo_m=1)
+```
+
+O trecho de código demonstra o uso da classe `ProbDist`, criando uma distribuição de probabilidade com dois resultados (`sexo_m` e `sexo_f`). Os valores de cada chave são informados como suas frequências e o código calcula a frequência normalizada (mantendo o valor entre 0 e 1). Desta forma, a classe representa que:
+
+* frequência normalizada de `sexo_m`: $1/2 = 0.5$
+* frequência normalizada de `sexo_f`: $1/2 = 0.5$
+
+Também redefinimos as funções `P()` e `tal_que()`:
+
+```python
 def tal_que(predicado, espaco):
     """Os resultados no espaço amostral para os quais o predicado é verdadeiro.
     Se espaco é um conjunto, retorna um subconjunto {resultado, ...}
@@ -648,8 +657,30 @@ def tal_que(predicado, espaco):
         return ProbDist({o:espaco[o] for o in espaco if predicado(o)})
     else:
         return {o for o in espaco if predicado(o)}
-    
+
+
+def P(evento, espaco):
+    """A probabilidade de um evento, dado um espaço amostral de resultados equiprováveis.
+    evento: uma coleção de resultados, ou um predicado.
+    espaco: um conjunto de resultados ou a distribuicao de probabilidade
+        na forma de pares {resultado: frequencia}.
+    """
+    if callable(evento):
+        evento = tal_que(evento, espaco)
+    if isinstance(espaco, ProbDist):
+        return sum(espaco[o] for o in espaco if o in evento)
+    else:
+        return Fraction(len(evento & espaco), len(espaco))
 ```
+
+A função `tal_que()` considera que o `espaco` pode ser `ProbDist` e, neste caso, retorna uma nova instância de `ProbDist` que é uma cópia de `espaco` desde que o `predicado` seja verdadeiro para cada chave.
+
+A função `P()` leva em consideração que o `espaco` pode ser uma instância de `ProbDist` e, neste caso, o cálculo da probabilidade de o evento ocorrer é baseado em:
+
+* se o `evento` for uma função (um predicado) então usa `tal_que()` para aplicar o predicado sobre o `espaco` e determinar o conjunto `evento`
+* se o `espaco` for uma instância de `ProbDist` então calcula a soma dos valores (as frequências) das chaves que também estão em `espaco`
+
+Vamos ver alguns exemplos práticos para fixar esses conceitos.
 
 Aqui está a distribuição de probabilidade para as famílias Dinamarquesas com dois filhos:
 
@@ -659,12 +690,14 @@ DK = ProbDist(GG=121801, GB=126840, BG=127123, BB=135138)
 
 O resultado, o valor de `DK`:
 
+    {
+        'BB': 0.2645086533229465,
+        'BG': 0.24882071317004043,
+        'GB': 0.24826679089140383,
+        'GG': 0.23840384261560926
+    }
 
-    {'BB': 0.2645086533229465,
-     'BG': 0.24882071317004043,
-     'GB': 0.24826679089140383,
-     'GG': 0.23840384261560926}
-
+Perceba que cada chave do dicionário `DK` não possui a frequência, mas a probabilidade.
 
 Vamos entender o resultado em partes. Para isso, alguns predicados:
 
@@ -677,27 +710,31 @@ def duas_meninas(r): return r == 'GG'
 def dois_meninos(r): return r == 'BB'
 ```
 
-O resultado de `P(primeiro_menina, DK)` é `0.4866706335070131`.
+Estes predicados serão aplicados a cada chave para calcular as probabilidades:
 
-O resultado de `P(segundo_menina, DK)` é `0.4872245557856497`.
+* a probabilidade de que o primeiro filho seja uma menina é `P(primeiro_menina, DK)` com valor aproximado de `0.487`.
+* a probabilidade de que o segundo filho seja uma menina é `P(segundo_menina, DK)` com valor aproximado de `0.487`.
 
 Isso indica que a probabilidade de uma criança ser menina está entre 48% e 49%, mas isso é um pouco diferente entre o primeiro e o segundo filhos:
 
 ```python
-P(segundo_menina, tal_que(primeiro_menina, DK)), P(segundo_menina, tal_que(primeiro_menino, DK))
+P(segundo_menina, tal_que(primeiro_menina, DK))
+P(segundo_menina, tal_que(primeiro_menino, DK))
 ```
 
-O resultado é: `(0.4898669165584115, 0.48471942072973107)`.
+A primeira linha calcula a probilidade de o segundo filho ser menina, dado que o primeiro é uma menina. O resultado é `0.4898669165584115`. A segunda linha calcula a probabilidade de o segundo filho ser menina, dado que o primeiro é um menino. O resultado é `0.48471942072973107`.
 
 E, para:
 
 ```python
-P(segundo_menino, tal_que(primeiro_menina, DK)), P(segundo_menino, tal_que(primeiro_menino, DK))
+P(segundo_menino, tal_que(primeiro_menina, DK))
+P(segundo_menino, tal_que(primeiro_menino, DK))
 ```
 
-O resultado é `(0.5101330834415885, 0.5152805792702689)`.
+A primeira linha calcula a probabilidade de o segundo filho ser menino, dado que o primeiro é uma menina. O resultado é `0.5101330834415885`. A segunda linha calcula a probabilidade de o segundo filho ser menino, dado que o primeiro é um menino. O resultado é `0.5152805792702689`.
 
-Isso diz que é mais provável que o sexo do segundo filho seja igual ao do primeiro cerca de 50%.
+Isso diz que é mais provável que o sexo do segundo filho seja igual ao do primeiro (cerca de 50%).
+
 
 ## Mais problemas de Urnas: M&Ms e Bayes
 
@@ -725,7 +762,7 @@ def joint(A, B, sep=''):
 MM = joint(bag94, bag96, ' ')
 ```
 
-O resultado é:
+O resultado, o valor de `MM`, é:
 
     {
         'brown blue': 0.07199999999999998,
@@ -766,7 +803,7 @@ O resultado é:
         'yellow yellow': 0.027999999999999997
     }
 
-Primeiro, o predicado que trata "um é amarelho e o outro é verde":
+A seguir definimos o predicado que trata do evento "um é amarelho e o outro é verde":
 
 ```python
 def yellow_and_green(r): 
@@ -775,26 +812,28 @@ def yellow_and_green(r):
 
 O resultado de `tal_que(yellow_and_green, MM)` é:
 
-    {'green yellow': 0.25925925925925924, 'yellow green': 0.7407407407407408}
+    {
+        'green yellow': 0.25925925925925924, 
+        'yellow green': 0.7407407407407408
+    }
 
 Agora podemos responder a pergunta: dado que tivemos amarelo e verde (mas não sabemos sabemos qual vem de qual pacote), qual é a probabilidade de que o amarelo tenha vido do pacote de 1994?
 
 ```python
-def yellow94(r): return r.startswith('yellow')
+def yellow94(r): 
+    return r.startswith('yellow')
 ```
 
-O resultado de `P(yellow94, tal_que(yellow_and_green, MM))` é `0.7407407407407408`. Então, há 74% de chance de que o amarelo tenha vindo do pacote de 1994.
+O resultado de `P(yellow94, tal_que(yellow_and_green, MM))` é, aproximadamente, `0.74`. Então, há 74% de chance de que o amarelo tenha vindo do pacote de 1994.
 
-A forma de resolver o problema foi semelhante ao que já vínhamos fazendo: criar um espaço amostral, usar P para escolher a probabilidade do evento em questão, dado que sabemos sobre o retorno. 
+A forma de resolver o problema foi semelhante ao que já vínhamos fazendo: criar um espaço amostral e usar `P()` para escolher a probabilidade do evento em questão, dado que sabemos sobre o retorno. 
 
 Poderíamos usar o *Teorema de Bayes*, mas por que? Porque queremos saber a probabilidade de um evento dada uma evidência, que não está imediatamente disponível; entretanto, a probabilidade da evidência dado o evento está disponível.
 
 Antes de ver as cores dos M&Ms, há duas hipóteses, A e B, ambas com igual probabilidade:
 
-```
-A: primeiro M&M do pacote de 1994, segundo do pacote de 1996
-B: primeiro M&M do pacote de 1996, segundo do pacote de 1994
-```
+* **A**: primeiro M&M do pacote de 1994, segundo do pacote de 1996
+* **B**: primeiro M&M do pacote de 1996, segundo do pacote de 1994
 
 \begin{align}
 P(A) = P(B) = 0.5
@@ -802,11 +841,9 @@ P(A) = P(B) = 0.5
 
 Então, temos uma evidência:
 
-```
-E: primeiro M&M amarelo, depois verde
-```
+* **E**: primeiro M&M amarelo, depois verde
 
-Queremos saber a probabilidade da hipótese A, dada a evidência E: $P(A \mid E)$.
+Queremos saber a probabilidade da hipótese **A**, dada a evidência **E**: $P(A \mid E)$.
 
 Isso não é fácil de calcular (exceto numerando o espaço amostral), mas o Teorema de Bayes diz:
 
