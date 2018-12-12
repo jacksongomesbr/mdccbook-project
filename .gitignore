@@ -1,2 +1,3 @@
 tex2pdf*/*
 *.eps
+__pycache__
